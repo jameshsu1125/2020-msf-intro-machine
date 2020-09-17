@@ -1,0 +1,73 @@
+#arrow
+{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+
+	.button-down
+	{
+		position: absolute;
+		padding: 5px;
+		margin: 20px auto;
+		background: rgba(233, 69, 43, .5);
+		height: 7vw;
+		width: 50vw;
+		border-radius: 10px;
+		transition: all 0.2s linear;
+		bottom: 9px;
+		left: 50%;
+		margin-left: -50vw/2;
+		pointer-events: auto;
+	}
+
+	.button-up
+	{
+		position: absolute;
+		padding: 5px;
+		margin: 13px auto;
+		background: rgba(233, 69, 43, .5);
+		height: 7vw;
+		width: 50vw;
+		border-radius: 10px;
+		transition: all 0.2s linear;
+		top: 0px;
+		left: 50%;
+		margin-left: -50vw/2;
+		pointer-events: auto;
+	}
+
+	.button-down:hover {
+		background: #a0200b;
+	}
+
+	.button-up:hover {
+		background: #a0200b;
+	}
+
+	.button-up::after, .button-down::after 
+	{
+		content: "";
+		position: absolute;
+		left: 50vw / 2 - 2vw;
+		z-index: 11;
+		display: block;
+		width: 4vw;
+		height: 4vw;
+		border-top: 5px solid #fff;
+		border-left: 5px solid #fff;
+	}
+
+	.button-up::after 
+	{
+		top: 2.8vw;
+		transform: rotate(45deg);
+	}
+
+	.button-down::after 
+	{
+		top: 5px;
+		transform: rotate(225deg);
+	}
+
+}
