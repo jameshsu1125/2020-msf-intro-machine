@@ -1,7 +1,9 @@
 # 無國界醫生
 實體機台活動和網路分享
 
-[Demo](https://msf.lesca.net/)
+瀏覽器同步網址
+[大螢幕(長)](https://msf.lesca.net/lg.html)
+[小螢幕(寬)](https://msf.lesca.net/sm.html)
 
 ### pre-install
 ```

@@ -28,7 +28,7 @@ export default class main extends React.Component {
 	{
 		this.img = this.refs.photo.getImage();
 
-		this.refs.h1.innerHTML = '點擊或是長按儲存大頭貼';
+		this.refs.h1.innerHTML = '　';
 		this.setState({ make: false, btn:false },()=>{
 			document.removeEventListener('touchstart', this.onstart);
 		});
@@ -59,7 +59,8 @@ export default class main extends React.Component {
 
 	appendBtn()
 	{
-		if(this.state.btn) return <div class='bottom'> <div id='btn' class='btn'>下載大頭貼</div> </div>
+		if(this.state.btn) return <div class='bottom'> <div id='btn' class='btn'>製作完成</div> </div>
+		else return <div class='bottom'><a href={ this.img } download> <div id='btn' class='btn'>下載大頭貼</div> </a></div>
 	}
 
 	render() {

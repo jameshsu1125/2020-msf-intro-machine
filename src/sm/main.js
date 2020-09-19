@@ -1,6 +1,8 @@
 import React from "react";
 import './main.less';
 import Qr from './qr';
+import PS from './ps';
+
 const Storage = require('UNIT/localStorage');
 import { text } from './../_data';
 import $ from "jquery";
@@ -76,7 +78,7 @@ export default class main extends React.Component {
 
 	appendPS(e)
 	{
-		return <h2 key='p'> { e.PS.split('\n').map( ( item, i ) =>  <span key={ i }> { item } <br /> </span> )} </h2>
+		return <PS key={'ps'} data={e.PS} /> //<h2 key='p'> { e.PS.split('\n').map( ( item, i ) =>  <span key={ i }> { item } <br /> </span> )} </h2>
 	}
 
 	appendQr()

@@ -25,7 +25,7 @@ export default class qr extends React.Component {
 	render() {
 		return ( 
 			<div ref='qr' class='qr'>
-				<Qr url={ this.props.index } width='400' height='400' />
+				<img src={ require(`./img/q${this.props.index}.png`)  } width='400' height='400' />
 			</div>
 		);
 	}

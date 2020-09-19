@@ -18,7 +18,7 @@ export default class card extends React.Component {
 
 		this.state = { loading:false };
 
-		//console.log(this.props.Facebook)
+		console.log(this.props.Facebook)
 
 		this.tr = { top: -32, time: 1000,
 			init:function()
@@ -35,27 +35,30 @@ export default class card extends React.Component {
 			canvas:{ 
 				coverIndex: parseInt(Hash.get('index') || '0'), 
 				img:{ x:300, y:20, w:430, h:361}, 
-				font:{ lineHeight:60 }, 
+				font:{ lineHeight:50 }, 
 				profile:{
 					location:{x:158, y:162, text:'烏干達'},
 					date:{ x:158, y:201, text:'' },
 					sn:{ x:158, y: 241, text:'' },
 					pic:{x:41,y:131, url:''},
-					card:{ x:93, y: 351, text:'工作證' },
+					card:{ x:51, y: 351, text:'PASSPORT' },
+					name:{ x:42, y:287, text:'' }
 				},
 				init:function(){
 					this.c = root.refs.canvas;
 					this.ctx = this.c.getContext('2d');
 					this.pic = root.refs.pic;
 					this.picCtx = this.pic.getContext('2d');
+					
 					var now = new Date();
 					this.profile.date.text = `${ Pad.pad(now.getDate(),2) }/${ Pad.pad(now.getMonth() + 1 ,2) }/${ now.getFullYear() }`;
 					this.profile.sn.text = now.getTime().toString().slice(3);
 					this.profile.location.text = video[this.coverIndex].location;
-					
+
 					if(root.props.Facebook.response)
 					{
 						this.profile.pic.url = root.props.Facebook.response.picture.data.url;
+						this.profile.name.text = root.props.Facebook.response.name
 						this.append();
 						this.evt();
 					}
@@ -65,6 +68,10 @@ export default class card extends React.Component {
 							this.init();
 						},500)
 					}
+				},
+				appendCardText:function(t, i)
+				{
+					this.ctx.fillText(t, this.img.x + 12, this.img.y + 50 + this.font.lineHeight * i)
 				},
 				append:function()
 				{
@@ -78,8 +85,12 @@ export default class card extends React.Component {
 						this.ctx.drawImage(r,this.img.x,this.img.y, this.img.w, this.img.h);
 						this.ctx.font = 'bold 45px NotoSansCJKtc-Bold-Alphabetic';
 						this.ctx.fillStyle = '#E60012';
-						this.ctx.fillText('愛不是藥', this.img.x + 40, this.img.y + 70)
-						this.ctx.fillText('卻可能一樣有效', this.img.x + 40, this.img.y + this.font.lineHeight + 60);
+						this.ctx.shadowOffsetX = 3;
+						this.ctx.shadowOffsetY = 3;
+						this.ctx.shadowColor = "rgba(0,0,0,0.3)";
+						this.ctx.shadowBlur = 4;
+						var t = video[this.coverIndex].cardText.split('\n')
+						for (var i = 0; i < t.length; i++) this.appendCardText(t[i], i);						
 						root.tr.in();
 					};
 
@@ -90,6 +101,8 @@ export default class card extends React.Component {
 						this.ctx.fillText(this.profile.location.text, this.profile.location.x, this.profile.location.y);
 						this.ctx.fillText(this.profile.date.text, this.profile.date.x, this.profile.date.y);
 						this.ctx.fillText(this.profile.sn.text, this.profile.sn.x, this.profile.sn.y);
+						this.ctx.fillText(this.profile.name.text, this.profile.name.x, this.profile.name.y);
+
 						this.ctx.font = '39px NotoSansCJKtc-Bold-Alphabetic';
 						this.ctx.fillStyle = '#E60012';
 						this.ctx.fillText(this.profile.card.text, this.profile.card.x, this.profile.card.y);
@@ -120,7 +133,9 @@ export default class card extends React.Component {
 				},
 				evt:function()
 				{
-					var p = this.profile.sn;
+					//move and test
+					return;
+					var p = this.profile.name;
 					var p1 = 'x', p2 = 'y';
 					$(window).keydown((e)=>{
 						switch(e.keyCode)

@@ -89,10 +89,26 @@ export default class photo extends React.Component {
 			scale:function()
 			{
 				this.clear();
+
 				var w = this.w * this.c.width;
 				var h = this.w * this.c.width;
-				this.s = this.x - (w - this.c.width) / 2;
-				this.ctx.drawImage(this.img, this.x + this.s, this.y + this.s, w, h);
+				
+				var cx = this.x + w / 2;
+				var cy = this.y + h / 2;
+
+				var x = this.x + (this.c.width - 400 * this.w) / 2;
+				var y = this.y + (this.c.height - 400 * this.w) / 2;
+
+				let ow = w - this.c.width;
+				let oh = h- this.c.height;
+
+				if(x > 0) x = 0;
+				else if(x < 0 - ow) x = 0 - ow;
+				if(y > 0) y = 0;
+				else if( y < 0 - oh) y = 0 - oh;
+
+
+				this.ctx.drawImage(this.img, x, y, w, h);
 				this.drawTemplate();
 			},
 			drawTemplate: function()

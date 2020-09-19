@@ -10,7 +10,7 @@ export default class player extends React.Component {
 	constructor(props) {
 		super(props);
 		const root = this;
-		this.width = window.innerWidth;
+		this.width = window.innerWidth * .96;
 		this.height = window.innerHeight / 2;
 
 		this.tr = { o:0, time: 1000,
@@ -86,10 +86,12 @@ export default class player extends React.Component {
 	render() {
 		return ( 
 			<div ref='main' id='player'>
+				<div class='bg'></div>
 				<video ref='video' autoPlay width={ this.width } height={ this.height } onEnded={this.end.bind(this)}>
 					<source src={ this.props.url } />
 				</video>
-				<div ref='btn' class='close'></div>
+
+				<div ref='btn' class='btn'>前往領取護照</div>
 			</div>
 		);
 	}
