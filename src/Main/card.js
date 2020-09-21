@@ -18,7 +18,7 @@ export default class card extends React.Component {
 
 		this.state = { loading:false };
 
-		console.log(this.props.Facebook)
+		//console.log(this.props.Facebook)
 
 		this.tr = { top: -32, time: 1000,
 			init:function()
