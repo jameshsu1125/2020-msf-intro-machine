@@ -16,6 +16,12 @@ $ npm i webpack-dev-server -g
 $ npm i node-pre-gyp -g
 ```
 
+### 18隻影片存放位置
+```
+/src/_data.js
+```
+
+
 ### test
 ```
 $ npm run dev
