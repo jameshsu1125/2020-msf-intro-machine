@@ -120,7 +120,7 @@ export default class card extends React.Component {
 						r.src = video[this.coverIndex].workPermit;
 						
 					}
-					p.setAttribute("crossOrigin",'Anonymous');
+					p.setAttribute('crossOrigin','Anonymous');
 					l.src = require('./img/card-l.png');
 				},
 				clear:function()
