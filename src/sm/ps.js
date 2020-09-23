@@ -8,7 +8,7 @@ export default class ps extends React.Component {
 		super(props);
 		const root = this;
 		//scripts
-		this.tr = { o:1, time:500,
+		this.tr = { o:1, time:500, l:50,
 			init:function()
 			{
 				this.c = $(root.refs.main);
@@ -16,6 +16,37 @@ export default class ps extends React.Component {
 				this.play();
 			},
 			play:function()
+			{
+				if(root.props.getIndex() == 0) this.push();
+				else this.blank();
+			},
+			push:function()
+			{
+				var t = $(root.refs.arr);
+
+				if(t.length == 0) return;
+
+				$(this)
+				.animate({
+					l:80,
+					o:1
+				},{
+					duration: this.time,
+					step:()=>this.tranL(t),
+					complete:()=>this.tranL(t),
+					easing:'swing'
+				})
+				.animate({
+					l:30,
+					o:1
+				},{
+					duration: this.time,
+					step:()=>this.tranL(t),
+					complete:()=>{this.tranL(t); this.play();},
+					easing:'swing'
+				});
+			},
+			blank:function()
 			{
 				$(this)
 				.animate({
@@ -34,11 +65,17 @@ export default class ps extends React.Component {
 					complete:()=>{this.tran(); this.play();},
 					easing:'easeInOutQuart'
 				});
-				
 			},
 			tran:function()
 			{
 				this.c.css('opacity', this.o);
+			},
+			tranL:function(t)
+			{
+				this.c.css('opacity',this.o);
+				t.css({
+					'background-position-x': `${this.l}%`,
+				})
 			}
 		}
 	}
@@ -61,7 +98,8 @@ export default class ps extends React.Component {
 			var op = [];
 			for(var i = 0; i < e.length; i++)
 			{
-				op.push(<div key={i}>&gt;</div>)
+				if(e[i] == '') op.push(<div ref='arr' key={i}></div>);
+				else op.push(<span key={i}>{e[i]}</span>)
 			}
 			return op;
 		}

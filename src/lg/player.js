@@ -48,7 +48,7 @@ export default class player extends React.Component {
 					opacity: this.o
 				})
 			},
-			arr:{ o:0, r:10, time: 1000,
+			arr:{ o:0, r:11, time: 1000,
 				init:function()
 				{
 					this.c = $(root.refs.arr);
@@ -56,32 +56,33 @@ export default class player extends React.Component {
 				},
 				in:function()
 				{
+
 					$(this)
 					.animate({
 						o: 1,
-						r: 4
+						r: 8
 					},{
 						duration: this.time,
 						step:()=>this.tran(),
 						complete:()=>{this.tran(); this.play();},
-						easing:'easeOutQuart'
+						easing:'swing'
 					})
 				},
 				play:function()
 				{
 					$(this)
 					.animate({
-						r: 9
+						r: 11
 					},{
-						duration: 300,
+						duration: 500,
 						step:()=>this.tran(),
 						complete:()=>{this.tran();},
 						easing:'swing'
 					})
 					.animate({
-						r: 4
+						r: 5
 					},{
-						duration: 300,
+						duration: 500,
 						step:()=>this.tran(),
 						complete:()=>{this.tran(); this.play();},
 						easing:'swing'

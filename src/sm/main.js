@@ -86,9 +86,14 @@ export default class main extends React.Component {
 		return <h2 key='d'> { e.description.split('\n').map( ( item, i ) =>  <span key={ i }> { item } <br /> </span> )} </h2>
 	}
 
+	getIndex()
+	{
+		return parseInt( this.state.data );
+	}
+
 	appendPS(e)
 	{
-		return <PS key={'ps'} data={e.PS} /> //<h2 key='p'> { e.PS.split('\n').map( ( item, i ) =>  <span key={ i }> { item } <br /> </span> )} </h2>
+		return <PS key={'ps'} data={e.PS} getIndex={ this.getIndex.bind(this) } />;
 	}
 
 	appendQr()
