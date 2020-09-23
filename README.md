@@ -28,6 +28,9 @@ $ npm run dev
 ```
 ##### project run with http://localhost:8080
 
+#### 大螢幕本機測試 http://localhost:8080/lg.html
+#### 小螢幕本機測試 http://localhost:8080/sm.html
+
 ### output to /dist
 ```
 $ npm run op
