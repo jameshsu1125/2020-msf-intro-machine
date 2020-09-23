@@ -37,12 +37,12 @@ export default class login extends React.Component {
 				</div>
 				<div class='row'>
 					<h2>
-						製作專屬工作證並分享<br />讓救援無界限！
+						領取無國界護照並分享<br />讓救援無界限！
 					</h2>
 				</div>
 				
 				<div class='row bottom'>
-					<button onClick={ this.login.bind(this)}> 製作無國界醫生工作證 </button>
+					<button onClick={ this.login.bind(this)}> 領取無國界護照 </button>
 				</div>
 				
 			</div>

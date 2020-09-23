@@ -43,16 +43,14 @@ export default class main extends React.Component {
 	{
 		if(this.state.make)
 		{
-			return <div class='row'>
+			return  <div class='row'>
 						<Photo ref='photo' />
 						<Slider set={ this.setPercent.bind(this) } />
 					</div>
 		}else
 		{
-			return <div class='row'>
-						<a href={ this.img } download>
-							<img src={ this.img } />
-						</a>
+			return  <div class='row'>
+						<img src={ this.img } />
 					</div>
 		}
 	}
@@ -61,6 +59,11 @@ export default class main extends React.Component {
 	{
 		if(this.state.btn) return <div class='bottom'> <div id='btn' class='btn'>製作完成</div> </div>
 		else return <div class='bottom'><a href={ this.img } download> <div id='btn' class='btn'>下載大頭貼</div> </a></div>
+	}
+
+	appendSaveImageWording()
+	{
+		if(!this.state.make) return <div class='row'><h2>Apple手機請長按圖片下載</h2></div>
 	}
 
 	render() {
@@ -72,6 +75,7 @@ export default class main extends React.Component {
 					</h1>
 				</div>
 				{ this.appendImageMake() }
+				{ this.appendSaveImageWording() }
 				{ this.appendBtn() }
 				<ORI />
 			</div>

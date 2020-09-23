@@ -29,7 +29,6 @@ export default class main extends React.Component {
 					else root.setState({ data:e });
 				});
 				Storage.addEvent('video',(e)=>{
-
 					root.setState({ qr: ''},()=>{
 						root.setState({ qr: e})
 					});
@@ -39,6 +38,17 @@ export default class main extends React.Component {
 					switch(e.keyCode)
 					{
 						case 32:
+							var elem = document.getElementById("sm");
+							if (elem.requestFullscreen) {
+								elem.requestFullscreen();
+							} else if (elem.msRequestFullscreen) {
+								elem.msRequestFullscreen();
+							} else if (elem.mozRequestFullScreen) {
+								elem.mozRequestFullScreen();
+							} else if (elem.webkitRequestFullscreen) {
+								elem.webkitRequestFullscreen();
+							}
+						break;
 						default:
 							this.clickButtoned();
 					}

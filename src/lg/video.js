@@ -35,7 +35,7 @@ export default class video extends React.Component {
 			},
 			appendImage:function()
 			{
-				this.c.css('background', `rgba(0, 0, 0, 0) url(${root.props.data.image}) no-repeat scroll center center / cover`)
+				this.c.css('background', `rgba(0, 0, 0, 0) url(${root.props.data.image}) no-repeat scroll top center / cover`)
 			}
 		}
 	}

@@ -23,7 +23,7 @@ export default class mask extends React.Component {
 					$(this).stop();
 					$(this).clearQueue();
 					$(this)
-					.delay(i * 300)
+					.delay(i * 100)
 					.animate({
 						width: '100%'
 					}, 300, 'easeOutQuart',()=>{
@@ -43,10 +43,10 @@ export default class mask extends React.Component {
 					$(this).clearQueue();
 
 					$(this)
-					.delay(i * 300)
+					.delay( ( len * 100 ) - i * 100)
 					.animate({
 						width: '0%'
-					}, 300, 'easeOutQuart',()=>{
+					}, 500, 'easeOutQuart',()=>{
 						if(i == len - 1)
 						{
 							root.props.out();
@@ -60,7 +60,7 @@ export default class mask extends React.Component {
 
 	set(e)
 	{
-		if(e == '0') this.tr.in();
+		if(e == '0' || e == '2') this.tr.in();
 		else if(e == '1') this.tr.out();
 	}
 
@@ -68,12 +68,9 @@ export default class mask extends React.Component {
 		this.tr.init();
 	}
 
-	componentDidUpdate() {
-
-	}
-
-	componentWillUnmount() {
-		
+	onClick()
+	{
+		this.props.click();
 	}
 
 	render() {
@@ -82,6 +79,11 @@ export default class mask extends React.Component {
 				<div class='f'></div>
 				<div class='f'></div>
 				<div class='f'></div>
+				<div class='f'></div>
+				<div class='f'></div>
+				<div class='f last' onClick={ this.onClick.bind(this) }>
+					<div class='logo'></div>
+				</div>
 			</div>
 		);
 	}

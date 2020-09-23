@@ -27,13 +27,15 @@ export default class arrow extends React.Component {
 		this.props.reset();
 		var h = $('#lg').height() + 100;
 		var to = h - window.innerHeight;
-		$('html, body').animate({ scrollTop: to + 'px' }, 500);
+		$('.containers').animate({ top: 0 - window.innerHeight * .5 }, 500);
+		this.setState({ dir:false });
 	}
 
 	up()
 	{
 		this.props.reset();
-		$('html, body').animate({ scrollTop: '0px' }, 500);
+		$('.containers').animate({ top: 0 }, 500);
+		this.setState({ dir:true });
 	}
 
 	appendArrow()

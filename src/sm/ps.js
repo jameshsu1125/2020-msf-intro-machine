@@ -8,7 +8,7 @@ export default class ps extends React.Component {
 		super(props);
 		const root = this;
 		//scripts
-		this.tr = { o:0, time:1000,
+		this.tr = { o:1, time:500,
 			init:function()
 			{
 				this.c = $(root.refs.main);
@@ -52,9 +52,25 @@ export default class ps extends React.Component {
 		this.tr.init();
 	}
 
+	appendItem(e)
+	{
+		e = e.split('ↆ');
+		if(e.length == 1) return e;
+		else
+		{
+			var op = [];
+			for(var i = 0; i < e.length; i++)
+			{
+				op.push(<div key={i}>&gt;</div>)
+			}
+			return op;
+		}
+		
+	}
+
 	append()
 	{
-		return this.props.data.split('\n').map( ( item, i ) =>  <span key={ i }> { item } <br /> </span> )
+		return this.props.data.split('\n').map( ( item, i ) =>  <span key={ i }> {  this.appendItem(item)  } <br /> </span> )
 	}
 
 	render() {

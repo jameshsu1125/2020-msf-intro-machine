@@ -30,6 +30,7 @@ export default class main extends React.Component {
 			{
 
 				Storage.addEvent('index',(e)=>{
+
 					if(e == '1') this.timer.play();
 					root.refs.mask.set(e);
 				})
@@ -38,6 +39,17 @@ export default class main extends React.Component {
 					switch(e.keyCode)
 					{
 						case 32:
+							var elem = document.getElementById("lg");
+							if (elem.requestFullscreen) {
+								elem.requestFullscreen();
+							} else if (elem.msRequestFullscreen) {
+								elem.msRequestFullscreen();
+							} else if (elem.mozRequestFullScreen) {
+								elem.mozRequestFullScreen();
+							} else if (elem.webkitRequestFullscreen) {
+								elem.webkitRequestFullscreen();
+							}
+						break;
 						default:
 							Storage.set('index', '1');
 					}
@@ -113,10 +125,10 @@ export default class main extends React.Component {
 
 	videoSelected(e,i)
 	{
+		this.selectedIndex = i;
 		this.tr.timer.stop();
 		this.setState({ player: e});
-		Storage.set('index', '2');
-		Storage.set('video', i);
+		Storage.set('index', '1');
 	}
 
 	videoReady()
@@ -136,7 +148,6 @@ export default class main extends React.Component {
 			}
 			return op;
 		}
-		
 	}
 
 	playerEnd()
@@ -144,7 +155,9 @@ export default class main extends React.Component {
 		this.setState({ player: '' });
 		this.tr.timer.play();
 		this.tr.player.play();
-		
+
+		Storage.set('index', '2');
+		Storage.set('video', this.selectedIndex);
 	}
 
 	appendPlayer()
@@ -157,7 +170,12 @@ export default class main extends React.Component {
 
 	maskOut()
 	{
-		//this.tr.player.play();
+		this.tr.player.play();
+	}
+
+	maskClick()
+	{
+		Storage.set('index', '1');
 	}
 
 	reset()
@@ -168,10 +186,12 @@ export default class main extends React.Component {
 	render() {
 		return ( 
 			<div id='lg'>
-				{ this.appendVideo() }
-				<Arrow reset={ this.reset.bind(this) } />
-				{ this.appendPlayer() }
-				<Mask ref='mask' out={ this.maskOut.bind(this) } />
+				<div class='containers'>
+					{ this.appendVideo() }
+					<Arrow reset={ this.reset.bind(this) } />
+					{ this.appendPlayer() }
+					<Mask ref='mask' out={ this.maskOut.bind(this) } click={ this.maskClick.bind(this) } />
+				</div>
 			</div>
 		);
 	}

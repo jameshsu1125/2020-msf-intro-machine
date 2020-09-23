@@ -8,9 +8,9 @@ module.exports = {
 
 		return new Promise((resolve, reject) =>{
 			$.ajax({
-				type: "POST",
+				type: 'POST',
 				url: url,
-				dataType: "json",
+				dataType: 'json',
 				data: {
 					imgBase64: base64,
 					title: title,

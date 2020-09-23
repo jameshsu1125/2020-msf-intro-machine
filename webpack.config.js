@@ -55,7 +55,7 @@ module.exports = {
     	port: 8080,
     	public: 'localhost:8080',
     	disableHostCheck: true,
-    	https:true
+    	https: false
 	},
 	performance: {
 		hints: false,
