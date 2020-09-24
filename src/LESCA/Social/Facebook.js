@@ -72,21 +72,11 @@ module.exports = {
 	},
 	share:function({ hashtag, redirect_uri, callback, url })
 	{
-
-		/*FB.ui({
-			method: 'share',
-			href: url,
-			display:'touch',
-		}, function(response) {
-			if(callback) callback(response)
-		});*/
-
 		var u = `https://www.facebook.com/dialog/share?app_id=${this.id}&href=${encodeURIComponent(url)}&redirect_uri=${encodeURIComponent(redirect_uri)}`
 		window.location.href = u;
 	},
 	click:function() {
 		if(!this.is) { console.log('init first'); return; };
-
 		if(this.status != 'connected') this.login(window.location.href);
 		else this.ready({ userID: this.id, name: this.name, accessToken: this.token, imageUrl: this.pic });
 	},

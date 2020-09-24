@@ -60,7 +60,7 @@ export default class mask extends React.Component {
 
 	set(e)
 	{
-		if(e == '0' || e == '2') this.tr.in();
+		if(e == '0') this.tr.in();
 		else if(e == '1') this.tr.out();
 	}
 
@@ -76,10 +76,6 @@ export default class mask extends React.Component {
 	render() {
 		return ( 
 			<div ref='main' id='mask'>
-				<div class='f'></div>
-				<div class='f'></div>
-				<div class='f'></div>
-				<div class='f'></div>
 				<div class='f'></div>
 				<div class='f last' onClick={ this.onClick.bind(this) }>
 					<div class='logo'></div>

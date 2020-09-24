@@ -120,7 +120,7 @@ module.exports =
 		},
 		{
 			image:require('./lg/img/14.png'),
-			video: require('./lg/vid/8.mp4'),
+			video: require('./lg/vid/14.mp4'),
 			workPermit: require('./Main/img/cover/14.png'),
 			cardText:'救人 也要保護自己',
 			location: 'Worldwide',

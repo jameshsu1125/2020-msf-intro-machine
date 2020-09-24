@@ -17,10 +17,11 @@ $ npm i node-pre-gyp -g
 ```
 
 ### 18隻影片存放位置
-```
-/src/_data.js
-```
 
+[影片下載](http://msf.lesca.net/_vid/) 然後放下面資料夾裡
+```
+/src/lg/vid/
+```
 
 ### test
 ```

@@ -8,7 +8,7 @@ export default class ps extends React.Component {
 		super(props);
 		const root = this;
 		//scripts
-		this.tr = { o:1, time:500, l:50,
+		this.tr = { o:1, time:350, l:50,
 			init:function()
 			{
 				this.c = $(root.refs.main);
@@ -17,8 +17,9 @@ export default class ps extends React.Component {
 			},
 			play:function()
 			{
-				if(root.props.getIndex() == 0) this.push();
-				else this.blank();
+				//if(root.props.getIndex() == 0) this.push();
+				//else 
+					this.blank();
 			},
 			push:function()
 			{
@@ -34,7 +35,7 @@ export default class ps extends React.Component {
 					duration: this.time,
 					step:()=>this.tranL(t),
 					complete:()=>this.tranL(t),
-					easing:'swing'
+					easing:'easeOutQuart'
 				})
 				.animate({
 					l:30,
@@ -43,7 +44,7 @@ export default class ps extends React.Component {
 					duration: this.time,
 					step:()=>this.tranL(t),
 					complete:()=>{this.tranL(t); this.play();},
-					easing:'swing'
+					easing:'easeOutQuart'
 				});
 			},
 			blank:function()

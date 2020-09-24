@@ -18,7 +18,7 @@ export default class main extends React.Component {
 	constructor(props) {
 		super(props);
 		const root = this;
-		this.state = { player:'', list:[] };
+		this.state = { player:'', list:[], index:true };
 		for(var i = 0; i < video.length; i++) {video[i].index = i; }
 		Storage.set('index', '0');
 		this.tr = {
@@ -30,8 +30,9 @@ export default class main extends React.Component {
 			{
 
 				Storage.addEvent('index',(e)=>{
-
+					console.log(e)
 					if(e == '1') this.timer.play();
+					if(e == '0') this.player.reset();
 					root.refs.mask.set(e);
 				})
 
@@ -55,44 +56,75 @@ export default class main extends React.Component {
 					}
 				})
 			},
-			player:{ o:0, time: 100, is:true, loadIndex:0, max:12, loadTime:2,
+			player:{ imgLoadedIndex:0, sortIndex:2, delay:3000,
 				init:function()
 				{
-					this.tran();
-				},
-				play:function()
-				{
-					$(this)
-					.animate({
-						o:1000
-					},{
-						duration: this.time,
-						step:()=>this.tran(),
-						complete:()=>this.tran(),
-						easing:'easeOutQuart'
-					});
-				},
-				tran:function()
-				{
-					if(!this.is) return;
-					this.is = false;
+					this.img = [];
+					this.readyIndex = 0;
 
-					this.loadTime ++;
-					if(this.loadTime > 5) this.loadTime = 2;
-					this.loadIndex = 0;
-					this.shuffle(video);
-					root.setState({ list: [] },()=>{
-						root.setState({ list: video })
-					});
+					for(var i = 0; i < video.length; i++)
+					{
+						var img = new Image();
+						img.onload = () => {
+							this.imgLoadedIndex ++;
+							if(this.imgLoadedIndex == video.length) this.imgLoaded();
+						}
+						img.src = video[i].image;
+						img.id = 'img' + i;
+						this.img.push(img);
+					}
 				},
-				shuffle:function(array)
+				reset:function()
 				{
-					return array.sort(() => Math.random() - 0.5);
+					this.readyIndex = 0;
+					this.sortIndex = 2;
+					for (var i = 0; i < this.img.length; i++) {
+						root.refs['v' + i].reset(i);
+					}
+				},
+				imgLoaded:function()
+				{
+					for (var i = 0; i < this.img.length; i++) {
+						root.refs['v' + i].appendImage(this.img[i], this.sortIndex);
+					}
+				},
+				re:function(i)
+				{
+					this.shuffle(i);
+				},
+				shuffle:function(i){
+					if(!this.img) return;
+					var index = 12 + Math.floor( Math.random() * 6 );
+					var dat = this.img[i];
+					this.img[i] = this.img[index];
+					this.img[index] = dat;
+					root.refs['v' + i].replaceImage(this.img[i], this.sortIndex);
+					root.refs['v' + index].replaceImage(this.img[index], this.sortIndex);
 				},
 				ready:function()
 				{
-					this.loadIndex ++;
-					if(this.loadIndex == this.max) this.is = true;
+					this.readyIndex ++;
+					if(this.readyIndex == this.img.length)
+					{
+						this.readyIndex = 0;
+
+						this.frame = setTimeout(()=>{
+							this.sortIndex ++;
+							if(this.sortIndex > 6) this.sortIndex = 2;
+							for(var i = 0; i < this.img.length; i++) root.refs['v' + i].play(this.sortIndex);
+						}, this.delay);
+					}
+				},
+				flapAll:function()
+				{
+					clearTimeout(this.frame);
+					for(var i = 0; i < this.img.length; i++)
+					{
+						root.refs['v' + i].flap(i);
+					}
+				},
+				getVideoIndexByImageIndex:function(i){
+					return parseInt(this.img[i].id.slice(3));
 				}
 			},
 			timer:{ max: reset_time,
@@ -104,6 +136,7 @@ export default class main extends React.Component {
 					if(e >= this.max)
 					{
 						EnterFrame.stop();
+						//root.tr.player.reset();
 						Storage.set('index', '0');
 					}
 				},
@@ -123,11 +156,13 @@ export default class main extends React.Component {
 		this.tr.init();
 	}
 
-	videoSelected(e,i)
+	videoSelected(i)
 	{
 		this.selectedIndex = i;
 		this.tr.timer.stop();
-		this.setState({ player: e});
+		
+
+		this.setState({ player: video[this.tr.player.getVideoIndexByImageIndex(i)].video });
 		Storage.set('index', '1');
 	}
 
@@ -136,15 +171,20 @@ export default class main extends React.Component {
 		this.tr.player.ready();
 	}
 
+	videoRe(i)
+	{
+		this.tr.player.re(i)
+	}
+
 	appendVideo()
 	{
 
-		if(this.state.list.length > 0)
+		if(this.state.index)
 		{
 			var op = [];
 			for(var i = 0; i < 18; i++)
 			{
-				op.push(<Video loadIndex={ this.tr.player.loadTime } onReady={ this.videoReady.bind(this) } key={i} index={ i } data={ video[i] } clicked={ this.videoSelected.bind(this) } />);
+				op.push(<Video ref={ 'v' + i } key={i} index={i} re={ this.videoRe.bind(this) } clicked={ this.videoSelected.bind(this)} ready={ this.videoReady.bind(this)} />);
 			}
 			return op;
 		}
@@ -154,7 +194,7 @@ export default class main extends React.Component {
 	{
 		this.setState({ player: '' });
 		this.tr.timer.play();
-		this.tr.player.play();
+		
 
 		Storage.set('index', '2');
 		Storage.set('video', this.selectedIndex);
@@ -170,7 +210,7 @@ export default class main extends React.Component {
 
 	maskOut()
 	{
-		this.tr.player.play();
+		this.tr.player.flapAll();
 	}
 
 	maskClick()
