@@ -30,7 +30,6 @@ export default class main extends React.Component {
 			{
 
 				Storage.addEvent('index',(e)=>{
-					console.log(e)
 					if(e == '1') this.timer.play();
 					if(e == '0') this.player.reset();
 					root.refs.mask.set(e);
@@ -158,11 +157,9 @@ export default class main extends React.Component {
 
 	videoSelected(i)
 	{
-		this.selectedIndex = i;
 		this.tr.timer.stop();
-		
-
-		this.setState({ player: video[this.tr.player.getVideoIndexByImageIndex(i)].video });
+		this.selectedIndex = this.tr.player.getVideoIndexByImageIndex(i);
+		this.setState({ player: video[this.selectedIndex].video });
 		Storage.set('index', '1');
 	}
 
@@ -204,6 +201,7 @@ export default class main extends React.Component {
 	{
 		if(this.state.player != '')
 		{
+
 			return <Player url={ this.state.player } end={ this.playerEnd.bind(this) } />
 		}
 	}
