@@ -104,3 +104,6 @@ typings/
 
 #video
 *.mp4
+
+#server-side
+/dist/_storage
