@@ -38,7 +38,7 @@ export default class main extends React.Component {
 					switch(e.keyCode)
 					{
 						case 32:
-							var elem = document.getElementById("sm");
+							/* var elem = document.getElementById("sm");
 							if (elem.requestFullscreen) {
 								elem.requestFullscreen();
 							} else if (elem.msRequestFullscreen) {
@@ -47,8 +47,8 @@ export default class main extends React.Component {
 								elem.mozRequestFullScreen();
 							} else if (elem.webkitRequestFullscreen) {
 								elem.webkitRequestFullscreen();
-							}
-						break;
+							} */
+						//break;
 						default:
 							this.clickButtoned();
 					}

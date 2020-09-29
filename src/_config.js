@@ -1,6 +1,6 @@
 const $ = require('jquery');
 module.exports = {
-	reset_time: 10000, //回到初始時間,
+	reset_time: 20000, //回到初始時間,
 	Upload:function({ title = '無國界醫生', description = '愛不是藥 但一樣有效', base64 })
 	{
 		var url = './_storage/savePhoto.php'
