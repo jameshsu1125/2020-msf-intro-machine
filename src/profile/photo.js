@@ -121,7 +121,7 @@ export default class photo extends React.Component {
 
 				this.ctx.font = 'bold 42px NotoSansCJKtc-Bold-Alphabetic';
 				this.ctx.fillStyle = '#E60012';
-				this.ctx.fillText('我是無國界醫生', 52, 270);
+				this.ctx.fillText('我挺無國界醫生', 52, 270);
 			},
 			set:function(e)
 			{
