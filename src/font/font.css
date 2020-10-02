@@ -1,12 +1,13 @@
 @font-face {
-  font-family: 'NotoSansCJKtc-Bold-Alphabetic';
-  src: url('./NotoSansCJKtc-Bold-Alphabetic.eot');
-  src: url('./NotoSansCJKtc-Bold-Alphabetic.eot?#iefix') format('embedded-opentype'),
-       url('./NotoSansCJKtc-Bold-Alphabetic.svg#NotoSansCJKtc-Bold-Alphabetic') format('svg'),
-       url('./NotoSansCJKtc-Bold-Alphabetic.ttf') format('truetype'),
-       url('./NotoSansCJKtc-Bold-Alphabetic.woff') format('woff'),
-       url('./NotoSansCJKtc-Bold-Alphabetic.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'NotoSansCJKtc-Bold-Alphabetic';
+	src: url('./NotoSansCJKtc-Bold-Alphabetic.eot');
+	src: url('./NotoSansCJKtc-Bold-Alphabetic.eot?#iefix')
+			format('embedded-opentype'),
+		url('./NotoSansCJKtc-Bold-Alphabetic.svg#NotoSansCJKtc-Bold-Alphabetic')
+			format('svg'),
+		url('./NotoSansCJKtc-Bold-Alphabetic.ttf') format('truetype'),
+		url('./NotoSansCJKtc-Bold-Alphabetic.woff') format('woff'),
+		url('./NotoSansCJKtc-Bold-Alphabetic.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
-

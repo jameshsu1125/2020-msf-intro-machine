@@ -1,57 +1,52 @@
-import React from "react";
+import React from 'react';
 import './arrow.less';
 
-import $ from "jquery";
-require("jquery-easing");
+import $ from 'jquery';
+require('jquery-easing');
 
 export default class arrow extends React.Component {
-
 	constructor(props) {
 		super(props);
 		const root = this;
 		//scripts
 		this.state = { dir: true };
-
 	}
 
 	componentDidMount() {
-		$(window).scroll(()=>{
+		$(window).scroll(() => {
 			var t = $('html, body').scrollTop();
-			if(t != 0) this.setState({ dir:false });
-			else this.setState({ dir:true });
+			if (t != 0) this.setState({ dir: false });
+			else this.setState({ dir: true });
 		});
 	}
 
-	down()
-	{
+	down() {
 		this.props.reset();
 		var h = $('#lg').height() + 100;
 		var to = h - window.innerHeight;
-		$('.containers').animate({ top: 0 - window.innerHeight * .5 }, 500);
-		this.setState({ dir:false });
+		$('.containers').animate({ top: 0 - window.innerHeight * 0.5 }, 500);
+		this.setState({ dir: false });
 	}
 
-	up()
-	{
+	up() {
 		this.props.reset();
 		$('.containers').animate({ top: 0 }, 500);
-		this.setState({ dir:true });
+		this.setState({ dir: true });
 	}
 
-	appendArrow()
-	{
-		if(this.state.dir) return <div onClick={this.down.bind(this)} class='button-down'></div>
-		else return <div onClick={ this.up.bind(this) } class='button-up'></div>
+	appendArrow() {
+		if (this.state.dir)
+			return <div onClick={this.down.bind(this)} class='button-down'></div>;
+		else return <div onClick={this.up.bind(this)} class='button-up'></div>;
 	}
 
 	render() {
-		return ( 
+		return (
 			<div id='arrow'>
 				{/*<div class='button-down'></div>
 				<div class='button-up'></div>*/}
-				{ this.appendArrow() }
+				{this.appendArrow()}
 			</div>
 		);
 	}
 }
-
