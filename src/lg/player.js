@@ -159,7 +159,6 @@ export default class player extends React.Component {
 				<video ref='video' autoPlay width={ this.width } height={ this.height } onEnded={this.end.bind(this)}>
 					<source src={ this.props.url } />
 				</video>
-
 				<div ref='btn' class='btn'>前往領取護照 <div ref='arr' class='arr'><img src={ require('./img/arrow.png') } /></div></div>
 			</div>
 		);

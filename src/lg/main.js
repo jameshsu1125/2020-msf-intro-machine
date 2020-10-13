@@ -184,7 +184,10 @@ export default class main extends React.Component {
 		this.tr.timer.play();
 
 		Storage.set('index', '2');
-		Storage.set('video', this.selectedIndex);
+		Storage.set('video', '');
+		setTimeout(()=>{
+			Storage.set('video', this.selectedIndex);
+		},50);
 	}
 
 	appendPlayer() {
