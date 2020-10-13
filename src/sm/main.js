@@ -25,7 +25,6 @@ export default class main extends React.Component {
 			},
 			evt:function(){ 
 				Storage.addEvent('index',(e)=>{
-					console.log(e)
 					if(e == '0' || e == '1') root.setState({ data:e, qr:'' });
 					else root.setState({ data:e });
 				});
