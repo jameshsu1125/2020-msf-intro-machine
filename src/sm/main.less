@@ -1,73 +1,75 @@
 @import './../font/font.css';
 @import './../font/stylesheet.css';
 
-#sm
-{
+#sm {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	min-height: 100%;
-	background-color: #E60012;
+	background-color: #e60012;
 	overflow: hidden;
 
-	.header
-	{
+	.loader {
+		position: absolute;
+		@img: './img/loading.gif';
+		background-image: url(@img);
+		width: image-width(@img);
+		height: image-height(@img);
+		left: 50%;
+		margin-left: 0 - image-width(@img) / 2;
+		bottom: 20px;
+	}
+
+	.header {
 		float: left;
 		width: 100%;
 		height: 23.697916666666664%;
-		background-color: #FFF;
+		background-color: #fff;
 		background-image: url('./img/logo.png');
 		background-repeat: no-repeat;
 		background-position: 10% center;
 		background-size: auto 60%;
 	}
 
-	.content
-	{
+	.content {
 		float: left;
 		width: 100%;
 		height: 100% - 23.697916666666664%;
 
-		.qr
-		{
+		.qr {
 			position: absolute;
 			width: 20vh;
 			height: 20vh;
-			background-color: #FFF;
+			background-color: #fff;
 			right: 5vh;
 			bottom: 5vh;
 
-			img
-			{
+			img {
 				margin: 5%;
 				width: 90%;
 				height: 90%;
 			}
 		}
 
-		.row
-		{
+		.row {
 			float: left;
 			width: 100%;
 			height: auto;
 			padding: 0% 6.4%;
 
-			color: #FFF;
+			color: #fff;
 			font-family: 'NotoSansCJKtc-Bold-Alphabetic', '微軟正黑體', sans-serif;
 
-			h1
-			{
+			h1 {
 				font-size: 11.2vh;
 				margin-block-start: 0.3em;
 				margin-block-end: 0.3em;
 			}
 
-			h2
-			{
+			h2 {
 				font-size: 6.5vh;
 
-				div
-				{
+				div {
 					font-size: 100px;
 					display: inline-block;
 					transform: rotate(90deg);
@@ -78,7 +80,6 @@
 					background-size: 50% 100%;
 					background-repeat: no-repeat;
 					background-position-x: 50%;
-
 				}
 			}
 		}
